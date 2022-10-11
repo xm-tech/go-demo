@@ -13,7 +13,7 @@ func main() {
 	set("lqh", 30)
 	age, err := get("maxm")
 	if err != nil {
-		fmt.Errorf("get err, %+v\n", err)
+		panic(err)
 	} else {
 		fmt.Printf("age = %+v\n", age)
 	}
