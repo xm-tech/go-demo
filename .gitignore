@@ -1,0 +1,5 @@
+.DS_Store
+vendor/
+mq/kafka/kafka.conf
+go.mod
+go.sum

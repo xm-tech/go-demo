@@ -1,0 +1,11 @@
+syntax = "proto3";
+option go_package = ".;proto";
+
+package main;
+
+message CareerData {
+  int32 idx = 1;
+  int32 conditionId = 2;
+  int64 count = 3;
+  int64 time = 4;
+}
