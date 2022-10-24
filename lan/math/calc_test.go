@@ -26,9 +26,10 @@ func TestAdd2(t *testing.T) {
 
 	for _, c := range cases {
 		// sub tests
-		subTestName := fmt.Sprintf("%d + %d", c.A, c.B)
+		subTestName := fmt.Sprintf("Add(%d,%d)", c.A, c.B)
 		t.Run(subTestName, func(t *testing.T) {
-			actual := c.A + c.B
+			// actual := c.A + c.B
+			actual := Add(c.A, c.B)
 			if actual != c.Expected {
 				t.Fatal("failure")
 			}
