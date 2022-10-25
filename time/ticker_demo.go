@@ -3,19 +3,28 @@ package main
 import (
 	"fmt"
 	"log"
+	"sync"
 	"time"
 )
 
 func main() {
 	// testTicker()
+	var sig sync.WaitGroup
+	sig.Add(1)
+
 	f := func() {
 		fmt.Println("f exec")
+		sig.Done()
 	}
 	// ThenDo(3*time.Second, f)
 
 	time.AfterFunc(3*time.Second, f)
-	for {
+	sig.Wait()
+	fmt.Println("exit")
+}
 
+func wait() {
+	for {
 	}
 }
 
