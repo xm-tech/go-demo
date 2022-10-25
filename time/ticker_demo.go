@@ -11,7 +11,12 @@ func main() {
 	f := func() {
 		fmt.Println("f exec")
 	}
-	ThenDo(3*time.Second, f)
+	// ThenDo(3*time.Second, f)
+
+	time.AfterFunc(3*time.Second, f)
+	for {
+
+	}
 }
 
 func testTicker() {
