@@ -1,11 +1,20 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 )
 
 func main() {
+	// testTicker()
+	f := func() {
+		fmt.Println("f exec")
+	}
+	ThenDo(3*time.Second, f)
+}
+
+func testTicker() {
 	done := make(chan struct{}, 1)
 	defer func() {
 		close(done)
@@ -29,4 +38,12 @@ func main() {
 	log.Println("wait done")
 	<-done
 	log.Println("done")
+}
+
+// exec funciton f after sec second
+func ThenDo(duration time.Duration, f func()) {
+	fmt.Println("ThenDo Begin", time.Now().UTC())
+	<-time.After(duration)
+	fmt.Println("ThenDo End, ", time.Now().UTC())
+	f()
 }
