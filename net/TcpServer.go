@@ -19,6 +19,9 @@ func main() {
 	if err != nil {
 		log.Panic("net.Listen Fail")
 	}
+	defer func() {
+		listener.Close()
+	}()
 
 	go signalHandler()
 
