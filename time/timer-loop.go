@@ -11,6 +11,27 @@ func main() {
 	AddLoopTimer()
 }
 
+type Throttler struct {
+	lastTime time.Time
+	interval time.Duration
+}
+
+func NewThrottler(interval time.Duration) *Throttler {
+	throttler := &Throttler{
+		lastTime: time.Now(),
+		interval: interval,
+	}
+	return throttler
+}
+
+func (self *Throttler) Sync() {
+	diff := time.Since(self.lastTime)
+	if diff < self.interval {
+		time.Sleep(self.interval - diff)
+	}
+	self.lastTime = time.Now()
+}
+
 func AddLoopTimer() {
 	fmt.Printf("AddLoopTimer ")
 	runLoopTickerFlag := true
@@ -20,6 +41,7 @@ func AddLoopTimer() {
 		// //1000*1000/GAME_FPS =每个fps的微秒数
 		//1000/GAME_FPS 每个fps的毫秒数
 		sleepTime := time.Duration(1000/GAME_FPS) * time.Millisecond
+		throttler := NewThrottler(sleepTime)
 		fmt.Printf("AddLoopTimer sleepTime %s \n", sleepTime)
 		ticker := time.NewTicker(sleepTime)
 
@@ -34,6 +56,7 @@ func AddLoopTimer() {
 			<-ticker.C
 			checkTickerSleep(tickerS, sleepTime, TickId, &maxTickerTime)
 			curT := time.Now()
+			throttler.Sync()
 
 			tickRun()
 			checkTickFunRunCost(curT, lastT, sleepTime, TickId, maxCostTimeMs)
