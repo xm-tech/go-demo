@@ -4,11 +4,26 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"unsafe"
 )
 
 func main() {
+	delete_file("/Volumes/My Passport/Downloads")
+
+	// other_op()
+}
+
+func delete_file(path string) {
+	fmt.Println("try to delete_file:", path)
+	if err := os.RemoveAll(path); err != nil {
+		log.Println("delete_file fail, path=", path)
+		panic(err)
+	}
+}
+
+func other_op() {
 	file, err := os.Create("text.txt")
 	if err != nil {
 		panic("create file fail")
