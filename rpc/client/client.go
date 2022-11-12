@@ -12,7 +12,7 @@ func Run() {
 		log.Fatal("rpc.Dial error", err)
 	}
 
-	fmt.Println("Client call: HelloService.Hello, Param:golang")
+	fmt.Println("Client call: HelloService.Hello(\"golang\")")
 	var resp string
 	err = client.Call("HelloService.Hello", "golang", &resp)
 	if err != nil {
