@@ -23,10 +23,13 @@ func Serve() {
 	if err != nil {
 		log.Fatal("listen error", err)
 	}
-	conn, err := listener.Accept()
-	if err != nil {
-		log.Fatal("listen error", err)
-	}
 	fmt.Println("Server Running")
-	rpc.ServeConn(conn)
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			log.Fatal("listen error", err)
+		}
+		// default use the go blob codec
+		go rpc.ServeConn(conn)
+	}
 }

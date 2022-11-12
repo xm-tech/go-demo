@@ -1,6 +1,6 @@
 # TODO
 
-[] rpc
+[x] rpc
 [] protobuf
 [] grpc
 [] etcd
