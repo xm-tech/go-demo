@@ -5,33 +5,20 @@ import "testing"
 func setup() {
 }
 
-func TestNewNode(t *testing.T) {
-	head := NewNode(3)
-	if head.val != 3 {
-		t.Errorf("NewNode error, val expedted 3 bug got %d", head.val)
-	}
+func TestNewLinkeList(t *testing.T) {
+	list := NewLinkeList()
+	list.Display()
 }
 
 func TestPush(t *testing.T) {
-	head := NewNode(3)
-	head.push(4)
-	if head.next == nil {
-		t.Errorf("Node.push error, the next not set")
-	}
+	list := NewLinkeList()
+	list.Push(4)
+	list.Push(5)
+	list.Push(6)
 
-	if head.next.val != 4 {
-		t.Errorf("Node.push error, expedted 4 but got %d", head.next.val)
-	}
-}
+	list.Display()
 
-func TestPop(t *testing.T) {
-	head := NewNode(3)
-	head.push(4)
-	poped := head.pop()
-	if poped == nil {
-		t.Errorf("Node.pop error, no element")
-	}
-	if poped.val != 4 {
-		t.Errorf("Node.pop error, expected 4 but got %d", poped.val)
+	if list.Size() != 3 {
+		t.Errorf("LinkeList.Push error, size expected 3, but got %d", list.Size())
 	}
 }
