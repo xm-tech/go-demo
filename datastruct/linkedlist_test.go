@@ -1,6 +1,9 @@
 package datastruct
 
-import "testing"
+import (
+	"container/list"
+	"testing"
+)
 
 func setup() {
 }
@@ -21,4 +24,10 @@ func TestPush(t *testing.T) {
 	if list.Size() != 3 {
 		t.Errorf("LinkeList.Push error, size expected 3, but got %d", list.Size())
 	}
+}
+
+func TestOfficialList(t *testing.T) {
+	list := list.New()
+	list.PushFront("3")
+	list.PushFront(3)
 }

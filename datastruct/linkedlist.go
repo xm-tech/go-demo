@@ -9,6 +9,12 @@ import (
 
 var lock sync.Mutex
 
+// A linkedlist Node
+type Node struct {
+	val  int
+	next *Node
+}
+
 type LinkedList struct {
 	head *Node
 	size int
@@ -16,12 +22,6 @@ type LinkedList struct {
 
 func NewLinkeList() *LinkedList {
 	return &LinkedList{head: nil, size: 0}
-}
-
-// A linkedlist Node
-type Node struct {
-	val  int
-	next *Node
 }
 
 // add one element into the linkedlist head
