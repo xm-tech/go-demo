@@ -2,6 +2,7 @@ package datastruct
 
 import (
 	"container/list"
+	"fmt"
 	"testing"
 )
 
@@ -17,7 +18,7 @@ func TestPush(t *testing.T) {
 	list := NewLinkeList()
 	list.Push(4)
 	list.Push(5)
-	list.Push(6)
+	list.Push("~~~~~6")
 
 	list.Display()
 
@@ -30,4 +31,9 @@ func TestOfficialList(t *testing.T) {
 	list := list.New()
 	list.PushFront("3")
 	list.PushFront(3)
+	list.PushFront(6)
+
+	for e := list.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value)
+	}
 }

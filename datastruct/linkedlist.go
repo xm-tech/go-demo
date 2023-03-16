@@ -2,7 +2,6 @@ package datastruct
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 	"sync"
 )
@@ -11,7 +10,7 @@ var lock sync.Mutex
 
 // A linkedlist Node
 type Node struct {
-	val  int
+	val  any
 	next *Node
 }
 
@@ -25,7 +24,7 @@ func NewLinkeList() *LinkedList {
 }
 
 // add one element into the linkedlist head
-func (self *LinkedList) Push(val int) {
+func (self *LinkedList) Push(val any) {
 	lock.Lock()
 	defer lock.Unlock()
 
@@ -58,7 +57,8 @@ func (self *LinkedList) Display() {
 	var output strings.Builder
 	node := self.head
 	for {
-		output.WriteString(strconv.Itoa(node.val))
+		// output.WriteString(strconv.Itoa(node.val))
+		output.WriteString(fmt.Sprintf("%v", node.val))
 		output.WriteString(".")
 		if node.next == nil {
 			break
