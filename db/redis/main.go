@@ -13,23 +13,23 @@ func main() {
 	set("lqh", 30)
 	age, err := get("maxm")
 	if err != nil {
-		panic(err)
-	} else {
 		fmt.Printf("age = %+v\n", age)
+	} else {
+		fmt.Println("get error", err)
 	}
 }
 
 func set(key string, val interface{}) error {
 	conn, err := getRedisConnFromPool()
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer conn.Close()
 
 	_, err = conn.Do("Set", key, val)
 	if err != nil {
 		fmt.Println(fmt.Errorf("set cmd err, %v", err))
-		panic("set cmd err")
+		return err
 	}
 	return nil
 }
@@ -37,7 +37,7 @@ func set(key string, val interface{}) error {
 func get(key string) (interface{}, error) {
 	conn, err := getRedisConnFromPool()
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	defer conn.Close()
 
