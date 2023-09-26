@@ -6,8 +6,6 @@ import (
 	"sync"
 )
 
-var lock sync.Mutex
-
 // A linkedlist Node
 type Node struct {
 	val  any
@@ -17,6 +15,7 @@ type Node struct {
 type LinkedList struct {
 	head *Node
 	size int
+	sync.Mutex
 }
 
 func NewLinkeList() *LinkedList {
@@ -25,8 +24,8 @@ func NewLinkeList() *LinkedList {
 
 // add one element into the linkedlist head
 func (self *LinkedList) Push(val any) {
-	lock.Lock()
-	defer lock.Unlock()
+	self.Lock()
+	defer self.Unlock()
 
 	node := &Node{val: val, next: nil}
 	if self.head == nil {
