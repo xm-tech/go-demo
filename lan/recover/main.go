@@ -13,7 +13,7 @@ func pcall(f func()) {
 	}()
 
 	f()
-	fmt.Println("after f")
+	fmt.Println("after f, which will not be executed if f paniced")
 }
 
 func main() {
