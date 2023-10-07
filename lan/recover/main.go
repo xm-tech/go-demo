@@ -23,5 +23,5 @@ func main() {
 	// e()
 	pcall(e)
 
-	log.Println("assume will be execute normally")
+	log.Println("assume will be executed normally")
 }
