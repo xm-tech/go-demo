@@ -24,4 +24,8 @@ func main() {
 	pcall(e)
 
 	log.Println("assume will be executed normally")
+
+	for {
+		fmt.Println(".....")
+	}
 }
