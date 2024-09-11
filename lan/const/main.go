@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 const (
@@ -67,4 +68,18 @@ func main() {
 	EB.info()
 	ZB.info()
 	YB.info()
+}
+
+func ptrOp() {
+	// 常量赋值给指针
+
+	type Man struct {
+		Age int
+	}
+
+	man := &Man{
+		Age: A,
+	}
+
+	log.Println("man:", man)
 }

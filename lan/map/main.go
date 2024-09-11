@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 func main() {
 	m1 := map[int]string{1: "a", 2: "b", 3: "c"}
@@ -20,4 +23,19 @@ func main() {
 	}
 
 	fmt.Printf("keys = %+v\n", keys)
+
+	testNil()
+}
+
+func testNil() {
+	uidGunUids := make(map[int64][]int64)
+
+	uids := []int64{100, 101, 102, 103}
+	for _, v := range uids {
+		if v != 100 {
+			uidGunUids[100] = append(uidGunUids[100], v)
+		}
+	}
+
+	log.Printf("uidGunUids:%+v", uidGunUids)
 }
